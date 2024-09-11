@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-const { simpanKontak } = require("./contacts");
+const { simpanKontak, listContacts } = require("./contacts");
 
 yargs.command({
   command: "add",
@@ -18,6 +18,15 @@ yargs.command({
   },
   handler(argv) {
     simpanKontak(argv.nama, argv.no);
+  },
+});
+
+// menampilkan daftar semua nama dan no hp contact
+yargs.command({
+  command: "list",
+  describe: "Menampilkan kontak",
+  handler() {
+    listContacts();
   },
 });
 
