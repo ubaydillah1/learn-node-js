@@ -1,9 +1,24 @@
-const { tulisPertanyaan, simpanKontak } = require("./contacts");
-const main = async () => {
-  const nama = await tulisPertanyaan("Masukkan nama : ");
-  const no = await tulisPertanyaan("Masukkan nomor : ");
+const yargs = require("yargs");
+const { simpanKontak } = require("./contacts");
 
-  simpanKontak(nama, no);
-};
+yargs.command({
+  command: "add",
+  describe: "Menambahkan Kontak Baru",
+  builder: {
+    nama: {
+      describe: "Nama Lengkap",
+      demandOption: true,
+      type: "string",
+    },
+    no: {
+      describe: "No Hp",
+      demandOption: false,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    simpanKontak(argv.nama, argv.no);
+  },
+});
 
-main();
+yargs.parse();
