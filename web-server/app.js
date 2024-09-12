@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(404);
         res.write("Error: File Not Found!");
       } else {
-        res.write(data);  
+        res.write(data);
       }
       res.end();
     });
